@@ -1,17 +1,9 @@
-# 内存缓存系统
+package cache
 
-## 内容：
+import "time"
 
-1.支持设定过期时间，精度到秒
-
-2.支持设定最大内存，当内存超过时做出合适的处理
-
-3.支持并发安全
-
-4.按以下接口实现：
-
-```golang
-//size : 1KB 100KB 1MB 2MB 1GB
+type Cache interface {
+	//size : 1KB 100KB 1MB 2MB 1GB
 	SetMaxMemory(size string) bool
 	//将value写入缓存
 	Set(key string, val interface{}, expire time.Duration) bool
@@ -25,5 +17,4 @@
 	Flush() bool
 	//获取缓存中所有key的数量
 	Keys() int64
-```
-
+}
